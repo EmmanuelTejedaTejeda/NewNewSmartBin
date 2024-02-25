@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/contenedores">
+    <activity
+        android:id="@+id/containerFragment"
+        android:name="com.example.smartbin.ContainerFragment"
+        android:label="activity_container_fragment"
+        tools:layout="@layout/activity_container_fragment" />
+    <fragment
+        android:id="@+id/agregarContenedor"
+        android:name="com.example.smartbin.agregarContenedor"
+        android:label="fragment_agregar_contenedor"
+        tools:layout="@layout/fragment_agregar_contenedor" >
+        <action
+            android:id="@+id/action_agregarContenedor_to_containerFragment"
+            app:destination="@id/containerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contenedores"
+        android:name="com.example.smartbin.contenedores"
+        android:label="fragment_contenedores"
+        tools:layout="@layout/fragment_contenedores" >
+        <action
+            android:id="@+id/action_contenedores_to_containerFragment"
+            app:destination="@id/containerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/estadisticas"
+        android:name="com.example.smartbin.estadisticas"
+        android:label="fragment_estadisticas"
+        tools:layout="@layout/fragment_estadisticas" >
+        <action
+            android:id="@+id/action_estadisticas_to_containerFragment"
+            app:destination="@id/containerFragment" />
+    </fragment>
+</navigation>
