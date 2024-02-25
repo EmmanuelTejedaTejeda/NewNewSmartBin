@@ -11,11 +11,15 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ContainerFragment extends AppCompatActivity {
+    ImageButton menuLateral;
     BottomNavigationView bottomNavigationView;
     NavHostFragment navHostFragment;
     NavController navController;
@@ -29,6 +33,14 @@ public class ContainerFragment extends AppCompatActivity {
         bottomNavigationView =  findViewById(R.id.bottomNavigationView);
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
+        menuLateral = findViewById(R.id.barra_lateral);
+        menuLateral.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ContainerFragment.this, "Hola", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         navController = navHostFragment.getNavController();
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
