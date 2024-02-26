@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ContainerFragment"
     android:background="@color/white"
+    android:id="@+id/drawerlayout"
     >
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/lateral_menu"
@@ -14,6 +15,7 @@
         app:headerLayout="@layout/cabecera_lateral_menu"
         app:menu="@menu/lateral_bar"
         android:layout_gravity="start"
+        android:background="@color/white"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
