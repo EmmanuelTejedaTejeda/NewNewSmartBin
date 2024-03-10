@@ -1,66 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login"
-    android:background="@color/blue"
+    android:background="@color/verde"
+    android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginBottom="60dp"
-        android:text="SmartBin"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="bold"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SmartBin"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            />
+        <ImageView
+            android:layout_marginLeft="50dp"
+            android:id="@+id/imageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/logo"
+            />
 
-        />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
     <TextView
-        android:layout_width="140dp"
+        android:layout_marginTop="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Soluciones ecologicas"
         android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         android:textColor="@color/white"
-        android:layout_marginLeft="40dp"
-        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
         />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="50dp"
-        android:src="@drawable/logo"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="20dp"
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="800dp"
         android:background="@drawable/constrain_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
+        android:orientation="vertical"
         >
 
         <TextView
@@ -72,10 +70,7 @@
             android:paddingTop="20dp"
             android:text="Correo:"
             android:textSize="20dp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/correo"
@@ -85,9 +80,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edit_text_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
             android:textColor="@color/black"
             android:paddingLeft="20dp"
             android:inputType="textEmailAddress"/>
@@ -101,21 +93,14 @@
             android:paddingTop="20dp"
             android:text="Contraseña:"
             android:textSize="20dp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/correo" />
+            android:textColor="@color/black"/>
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/contenedorContrasena"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/edit_text_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            android:layout_marginLeft="20dp"
+            android:background="@drawable/edit_text_background" android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:orientation="horizontal"
@@ -142,38 +127,83 @@
 
 
         <Button
+            android:layout_gravity="center_horizontal"
             android:id="@+id/ingresar"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/blue"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/verde"
+            android:textColor="@color/white"
             android:text="INGRESAR"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contenedorContrasena" />
+            />
 
         <TextView
+            android:layout_gravity="center_horizontal"
             android:id="@+id/registrarse"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:gravity="center"
             android:text="REGISTRARSE"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingresar" />
+            />
 
-        <ImageButton
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:id="@+id/registerWithGoogle"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="56dp"
-            android:background="@drawable/google"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.155"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/iniciarsesion"
+            android:padding="10dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:background="@drawable/google" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@color/transparente"
+                android:text="Continuar con Google"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textAllCaps="false"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/registerWithFacebook"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/iniciarsesion"
+            android:padding="10dp">
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:background="@drawable/facebook" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@color/transparente"
+                android:text="Continuar con Facebook"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textAllCaps="false"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

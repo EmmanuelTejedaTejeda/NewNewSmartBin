@@ -11,4 +11,5 @@
     <color name="orange">#d35230</color>
     <color name="verde">#185c37</color>
     <color name="gris">#777777</color>
+    <color name="transparente">#00FFFFFF</color>
 </resources>
