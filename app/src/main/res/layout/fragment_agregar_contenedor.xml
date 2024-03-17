@@ -1,11 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".agregarContenedor"
-    android:background="@color/orange"
+    android:background="@color/white"
+    android:orientation="vertical"
     >
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:src="@drawable/contenedor_fondo"
+        />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Registro de contenedores"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="ID del contenedor:"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/backgroundverdes"
+        android:text="1"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textColor="@color/verde"
+        />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Direccion del contenedor:"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        />
+    <EditText
+        android:id="@+id/agregarDireccion"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/backgroundverdes"
+        android:hint="Ejemplo: 123 avenida 123"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/verde"
+        android:textSize="15dp"
+        />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Capacidad maxima:"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        />
+    <EditText
+        android:id="@+id/agregarPeso"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/backgroundverdes"
+        android:hint="Ejemplo: 10 kilos"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/verde"
+        android:textSize="15dp"
+        />
+
+    <Button
+        android:id="@+id/BotonGuardar"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/verde"
+        android:textColor="@color/white"
+        android:text="Guardar"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="bottom"
+        />
 
 
-</FrameLayout>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

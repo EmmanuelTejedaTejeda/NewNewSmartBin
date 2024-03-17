@@ -54,4 +54,13 @@ dependencies {
 
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    //Implementaciones para poner  imagen de usuario mediante url
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
+
+    //Importaciones de base de datos de firebase
+    implementation ("com.google.firebase:firebase-database:20.3.1")
+    implementation ("com.firebaseui:firebase-ui-database:7.1.1")
+    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
 }

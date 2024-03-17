@@ -13,6 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/cabecera_lateral_menu"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
         app:menu="@menu/lateral_bar"
         android:layout_gravity="start"
         android:background="@color/white"
@@ -26,7 +28,7 @@
             android:id="@+id/include"
             layout="@layout/cabecera"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,14 +45,13 @@
             app:layout_constraintTop_toBottomOf="@+id/include"
             app:navGraph="@navigation/nav_graph" />
 
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
             android:background="@color/white"
-            app:itemIconTint="@color/gris"
+            app:itemIconTint="@color/black"
             app:itemTextColor="@color/gris"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

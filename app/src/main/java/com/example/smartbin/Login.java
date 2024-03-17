@@ -1,29 +1,54 @@
 package com.example.smartbin;
 
+
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+
 public class Login extends AppCompatActivity {
     TextView registrarse;
     Button ingresar;
     EditText correo, contrasena;
     ImageButton showPassword;
     private FirebaseAuth auth;
+    private GoogleSignInClient mGoogleSignInClient;
+    int RC_SING_IN = 1;
+    Button registerWithGoogle;
+    String TAG = "GoogleSignIn";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,12 +114,74 @@ public class Login extends AppCompatActivity {
                 contrasena.setSelection(contrasena.getText().length());
             }
         });
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail().build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        registerWithGoogle = findViewById(R.id.registerWithGoogle);
+        registerWithGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
+        });
     }
 
-    public void subrayado(){
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SING_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            if (task.isSuccessful()) {
+                try {
+                    GoogleSignInAccount account = task.getResult(ApiException.class);
+                    Log.d(TAG, "FirabaseAuthWithGoogle:" + account.getId());
+                    firebaseAuthWithGoogle(account.getIdToken());
+                } catch (ApiException e) {
+                    Log.w(TAG, "Inicio de sesion con google fallido", e);
+                }
+            } else {
+                Log.d(TAG, "Error, incio de sesion no exitoso" + task.getException().toString());
+                Toast.makeText(this, "Ocurrio un error"+ task.getException().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void signIn(){
+        Intent signInIntent = new Intent(mGoogleSignInClient.getSignInIntent());
+        startActivityForResult(signInIntent, RC_SING_IN);
+    }
+
+    private void subrayado(){
         registrarse = (TextView) findViewById(R.id.registrarse);
         SpannableString miTexto = new SpannableString("REGISTRARSE");
         miTexto.setSpan(new UnderlineSpan(),0,miTexto.length(),0);
         registrarse.setText(miTexto);
+    }
+
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        auth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Log.d(TAG, "SignInWithCredential:success");
+                    Intent intent = new Intent(Login.this, ContainerFragment.class);
+                    startActivity(intent);
+                    Toast.makeText(Login.this, "Ingreso exitoso", Toast.LENGTH_SHORT).show();
+                    Login.this.finish();
+                }
+                else{
+                    Log.w(TAG, "SignInWithCredential:failure", task.getException());
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }

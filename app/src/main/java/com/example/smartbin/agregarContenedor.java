@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +17,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class agregarContenedor extends Fragment {
+    EditText agregarContenedor, agregarDireccion, agregarPeso, agregarEstado;
+    Button botonGuardar;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +64,22 @@ public class agregarContenedor extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_agregar_contenedor, container, false);
+        View view = inflater.inflate(R.layout.fragment_agregar_contenedor, container, false);
+        agregarDireccion = view.findViewById(R.id.agregarDireccion);
+        agregarPeso = view.findViewById(R.id.agregarPeso);
+        botonGuardar = view.findViewById(R.id.BotonGuardar);
+        botonGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textDireccion = agregarDireccion.getText().toString();
+                String textPeso = agregarPeso.getText().toString();
+                if (!textDireccion.isEmpty() && !textPeso.isEmpty()){
+                    Toast.makeText(getContext(), "Guardado", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(getContext(), "Favor de ingresar todos los datos solicitados", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        return view;
     }
 }

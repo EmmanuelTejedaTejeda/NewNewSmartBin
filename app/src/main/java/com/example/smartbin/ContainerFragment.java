@@ -5,23 +5,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ContainerFragment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton menuLateral;
@@ -31,7 +28,8 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
     TextView textoVariable;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-
+    TextView nombreUsuario;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +37,6 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
         bottomNavigationView =  findViewById(R.id.bottomNavigationView);
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
-
-
         //Declaracion de los componentes de el menu lateral
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.lateral_menu);
@@ -52,10 +48,7 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
             public void onClick(View v) {
                 drawerLayout.openDrawer(GravityCompat.START);}
         });
-
         //elementos internos del menu lateral
-
-
         navController = navHostFragment.getNavController();
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -73,9 +66,16 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
                 }
             }
         });
+
+//        Inflamos el layout de cabecera_lateral_menu.mxl
+        LayoutInflater inflater1 =LayoutInflater.from(getApplicationContext());
+        View view1 = inflater1.inflate(R.layout.cabecera_lateral_menu, null);
+        //Hacemos referencia al elemento de nuestro layout cabecera
+        nombreUsuario = view1.findViewById(R.id.nombreUsuario);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        nombreUsuario.setText(currentUser.getDisplayName());
     }
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return true;

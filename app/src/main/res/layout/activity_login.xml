@@ -150,7 +150,6 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:id="@+id/registerWithGoogle"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/iniciarsesion"
@@ -164,6 +163,7 @@
                 android:background="@drawable/google" />
 
             <Button
+                android:id="@+id/registerWithGoogle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"

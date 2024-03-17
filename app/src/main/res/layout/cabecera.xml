@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="@color/white"
+    android:background="@color/verde"
     >
 
     <ImageButton
@@ -11,8 +11,9 @@
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:layout_weight="0"
-        android:background="@color/white"
+        android:background="@color/verde"
         android:src="@drawable/slide_menu"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
@@ -27,7 +28,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="textoPrueba"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
