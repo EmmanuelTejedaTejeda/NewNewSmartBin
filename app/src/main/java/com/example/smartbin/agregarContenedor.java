@@ -4,12 +4,18 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.Context;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,7 +23,7 @@ import android.widget.Toast;
  * create an instance of this fragment.
  */
 public class agregarContenedor extends Fragment {
-    EditText agregarContenedor, agregarDireccion, agregarPeso, agregarEstado;
+    EditText agregarContenedor, agregarDireccion, agregarPeso, agregarEstado, agregarNombre;
     Button botonGuardar;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -65,21 +71,50 @@ public class agregarContenedor extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_agregar_contenedor, container, false);
+        animacion();
         agregarDireccion = view.findViewById(R.id.agregarDireccion);
         agregarPeso = view.findViewById(R.id.agregarPeso);
+        agregarNombre = view.findViewById(R.id.agregarNombre);
         botonGuardar = view.findViewById(R.id.BotonGuardar);
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String textDireccion = agregarDireccion.getText().toString();
                 String textPeso = agregarPeso.getText().toString();
-                if (!textDireccion.isEmpty() && !textPeso.isEmpty()){
+                String textNombre = agregarNombre.getText().toString();
+                if (!textDireccion.isEmpty() && !textPeso.isEmpty() && !textNombre.isEmpty()){
                     Toast.makeText(getContext(), "Guardado", Toast.LENGTH_SHORT).show();
-                } else{
+                } else {
                     Toast.makeText(getContext(), "Favor de ingresar todos los datos solicitados", Toast.LENGTH_SHORT).show();
+                    if (textNombre.isEmpty()){
+                        agregarNombre.requestFocus();
+                        showKeyboard(agregarNombre);
+                    } else if (textDireccion.isEmpty()) {
+                        agregarDireccion.requestFocus();
+                        showKeyboard(agregarDireccion);
+                    } else if (textPeso.isEmpty()) {
+                        agregarPeso.requestFocus();
+                        showKeyboard(agregarPeso);
+                    }
                 }
             }
         });
         return view;
+    }
+
+    private void showKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+    }
+    void animacion(){
+        // Configurar animación de entrada
+        Transition enterTransition = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_left);
+        setEnterTransition(enterTransition);
+
+        // Configurar animación de salida
+        Transition exitTransition = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_right);
+        setExitTransition(exitTransition);
     }
 }

@@ -1,27 +1,30 @@
 package com.example.smartbin;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
-
-import java.util.zip.Inflater;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +34,9 @@ import java.util.zip.Inflater;
 public class contenedores extends Fragment {
     RecyclerView recyclerView;
     MainAdapter mainAdapter;
-    TextView estado;
+    LinearLayout sinConexion;
+    SwipeRefreshLayout refreshLayout;
+    EditText search;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,27 +84,21 @@ public class contenedores extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contenedores, container, false);
-        recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        FirebaseRecyclerOptions<MainModel> options = new FirebaseRecyclerOptions.Builder<MainModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Contenedores"),MainModel.class)
-                .build();
-        mainAdapter = new MainAdapter(options);
-        recyclerView.setAdapter(mainAdapter);
+        verificarConexion(view);
+        refreshLayout = view.findViewById(R.id.refresh);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        verificarConexion(view);
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 2000); // 2000 milisegundos = 2 segundos
+            }
+        });
         return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-//        LayoutInflater inflater1 = LayoutInflater.from(getActivity().getApplicationContext());
-//        View view1 = inflater1.inflate(R.layout.mainitem, null);
-//        estado = view1.findViewById(R.id.Estado);
-//        String textEstado = estado.getText().toString();
-//        if (textEstado.equals("viejo")){
-//            estado.setBackgroundResource(R.color.rojo);
-//        }
     }
 
     @Override
@@ -114,4 +113,33 @@ public class contenedores extends Fragment {
         super.onStop();
         mainAdapter.stopListening();
     }
+
+    void verificarConexion(View view){
+        sinConexion = view.findViewById(R.id.sin_conexion);
+        sinConexion.setVisibility(View.INVISIBLE);
+        ConnectivityManager con = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = con.getActiveNetworkInfo();
+        if (info!= null && info.isConnected()){
+            sinConexion.setVisibility(View.INVISIBLE);
+            mostrarContenedores(view);
+            mainAdapter.startListening();
+        } else {
+            mainAdapter.stopListening();
+            sinConexion.setVisibility(View.VISIBLE);
+        }
+    }
+
+    void mostrarContenedores(View view){
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        FirebaseRecyclerOptions<MainModel> options = new FirebaseRecyclerOptions.Builder<MainModel>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Contenedores"),MainModel.class)
+                .build();
+        mainAdapter = new MainAdapter(options);
+        recyclerView.setAdapter(mainAdapter);
+    }
+
+
+
 }

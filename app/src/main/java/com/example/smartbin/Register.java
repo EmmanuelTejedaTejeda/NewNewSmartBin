@@ -2,7 +2,6 @@ package com.example.smartbin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -15,12 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 public class Register extends AppCompatActivity {
     EditText Rcorreo, Rcontrasena;
     Button registrarse;
@@ -101,8 +98,11 @@ public class Register extends AppCompatActivity {
         int inputType = Rcontrasena.getInputType();
         if (inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD){
             Rcontrasena.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            ShowPassword.setBackgroundResource(R.drawable.ojo_abierto);
+
         }else{
             Rcontrasena.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            ShowPassword.setBackgroundResource(R.drawable.ojo_cerrado);
         }
         Rcontrasena.setSelection(Rcontrasena.getText().length());
     }

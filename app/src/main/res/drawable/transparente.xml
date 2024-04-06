@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/transparent"/> <!-- Color sólido transparente -->
+    <stroke android:width="0dp"/> <!-- Sin borde -->
+</shape>

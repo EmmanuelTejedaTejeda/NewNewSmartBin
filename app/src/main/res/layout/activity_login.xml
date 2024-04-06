@@ -5,106 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login"
-    android:background="@color/verde"
+    android:background="@color/white"
     android:orientation="vertical"
-    >
+    android:padding="30dp">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <ImageView
+        android:layout_marginTop="25dp"
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SmartBin"
-            android:textColor="@color/white"
-            android:textSize="40dp"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical"
-            />
-        <ImageView
-            android:layout_marginLeft="50dp"
-            android:id="@+id/imageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/logo"
-            />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-    <TextView
-        android:layout_marginTop="0dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Soluciones ecologicas"
-        android:textSize="25dp"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
+        android:layout_height="180dp"
+        android:src="@drawable/logo"
+        android:layout_gravity="center_horizontal"
         />
 
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_marginTop="20dp"
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="800dp"
-        android:background="@drawable/constrain_login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/email"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="40dp"
-            android:paddingTop="20dp"
-            android:text="Correo:"
-            android:textSize="20dp"
-            android:textColor="@color/black"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Smart"
+                android:textColor="@color/black"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bin"
+                android:textStyle="bold"
+                android:textSize="50dp"
+                android:textColor="@color/verde"
+                android:textAllCaps="true"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="S O L U C I O N E S  E C O L O G I C A S"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:gravity="center"
 
+        />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar sesion"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/verde"/>
         <EditText
             android:id="@+id/correo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
             android:background="@drawable/edit_text_background"
             android:textColor="@color/black"
             android:paddingLeft="20dp"
-            android:inputType="textEmailAddress"/>
-
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="40dp"
-            android:paddingTop="20dp"
-            android:text="Contraseña:"
-            android:textSize="20dp"
-            android:textColor="@color/black"/>
-
-
+            android:inputType="textEmailAddress"
+            android:hint="Correo"
+            android:textColorHint="@color/gris"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="true"/>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/contenedorContrasena"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/edit_text_background" android:layout_marginLeft="20dp"
+            android:background="@drawable/edit_text_background"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
             android:orientation="horizontal"
-            >
+            android:paddingRight="10dp">
             <EditText
                 android:id="@+id/contrasena"
                 android:layout_width="0dp"
@@ -113,55 +92,67 @@
                 android:inputType="textPassword"
                 android:textColor="@color/black"
                 android:paddingLeft="20dp"
-                android:background="@drawable/edit_text_background"
-                />
+                android:background="@color/transparente"
+                android:hint="Contraseña"
+                android:textColorHint="@color/gris"/>
             <ImageButton
                 android:id="@+id/showPassword"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@drawable/final_eye"
                 android:layout_gravity="center"
-                android:layout_marginRight="20dp"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
         <Button
             android:layout_gravity="center_horizontal"
             android:id="@+id/ingresar"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
             android:backgroundTint="@color/verde"
             android:textColor="@color/white"
             android:text="INGRESAR"
             />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="¿Aun no tienes una cuenta? "
+                android:textColor="@color/black"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/registrarse"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="REGISTRATE"
+                android:textColor="@color/verde"
+                android:gravity="center"
+                />
 
-        <TextView
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/registrarse"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="REGISTRARSE"
-            android:textColor="@color/black"
-            />
-
+        </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:background="@drawable/iniciarsesion"
             android:padding="10dp">
-
             <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:background="@drawable/google" />
-
             <Button
                 android:id="@+id/registerWithGoogle"
                 android:layout_width="0dp"
@@ -169,41 +160,35 @@
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:background="@color/transparente"
-                android:text="Continuar con Google"
+                android:text="INICIAR CON GOOGLE"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textAllCaps="false"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/registerWithFacebook"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:background="@drawable/iniciarsesion"
             android:padding="10dp">
 
             <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
                 android:background="@drawable/facebook" />
 
             <Button
+                android:id="@+id/registerWithFacebook"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:background="@color/transparente"
-                android:text="Continuar con Facebook"
+                android:text="INICIAR CON FACEBOOK"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textAllCaps="false"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
-
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 </androidx.appcompat.widget.LinearLayoutCompat>

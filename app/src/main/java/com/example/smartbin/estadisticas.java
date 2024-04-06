@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +61,19 @@ public class estadisticas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_estadisticas, container, false);
+        View view =  inflater.inflate(R.layout.fragment_estadisticas, container, false);
+        animacion();
+        return view;
+    }
+    void animacion(){
+        // Configurar animación de entrada
+        Transition enterTransition = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_right);
+        setEnterTransition(enterTransition);
+
+        // Configurar animación de salida
+        Transition exitTransition = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_left);
+        setExitTransition(exitTransition);
     }
 }
