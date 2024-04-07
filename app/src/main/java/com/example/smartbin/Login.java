@@ -80,7 +80,6 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this,"Favor, ingrese correo o contraseña para continuar", Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
         registrarse = findViewById(R.id.registrarse);
         registrarse.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +118,6 @@ public class Login extends AppCompatActivity {
                 signIn();
             }
         });
-
         registerWithFacebook = findViewById(R.id.registerWithFacebook);
         registerWithFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,8 +141,18 @@ public class Login extends AppCompatActivity {
                     Log.w(TAG, "Inicio de sesion con google fallido", e);
                 }
             } else {
-                Log.d(TAG, "Error, incio de sesion no exitoso" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
+                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
                 Toast.makeText(this, "Ocurrio un error"+ task.getException().toString(), Toast.LENGTH_SHORT).show();
+
             }
         }
     }
