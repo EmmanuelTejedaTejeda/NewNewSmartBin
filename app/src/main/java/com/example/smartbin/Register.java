@@ -95,9 +95,13 @@ public class Register extends AppCompatActivity {
                                 Intent intent = new Intent(Register.this, Login.class);
                                 startActivity(intent);
                                 FirebaseUser user = auth.getCurrentUser();
+                                String correoUsuario = task.getResult().getUser().getEmail();
                                 if (user != null){
                                     DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("usuarios");
                                     userReference.child(user.getUid()).child("nombreUsuario").setValue(textUsuario);
+                                    DatabaseReference correoRerefence = FirebaseDatabase.getInstance().getReference("correos");
+                                    correoRerefence.push().setValue(correoUsuario);
+
                                 }
                                 else {
                                     Toast.makeText(Register.this, "error", Toast.LENGTH_SHORT).show();
