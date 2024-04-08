@@ -16,7 +16,10 @@
         app:itemTextColor="@color/black"
         app:menu="@menu/lateral_bar"
         android:layout_gravity="start"
+        app:dividerInsetStart="40dp"
+        android:outlineAmbientShadowColor="@color/black"
         android:background="@color/white"
+        app:itemIconPadding="30dp"
         />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

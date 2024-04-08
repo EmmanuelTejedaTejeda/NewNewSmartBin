@@ -1,7 +1,4 @@
 package com.example.smartbin;
-
-
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,8 +25,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
 public class Login extends AppCompatActivity {
     TextView registrarse;
     Button ingresar;
@@ -191,5 +188,11 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null){
+            Intent intent = new Intent(Login.this, ContainerFragment.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
