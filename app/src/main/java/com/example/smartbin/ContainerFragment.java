@@ -34,6 +34,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ContainerFragment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton menuLateral;
@@ -132,17 +137,31 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
         toolbarsearch = findViewById(R.id.toolbarSearch);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        for (int i = 0; i<20;i++){
-            if (currentUser.getDisplayName() != null) {
-                nombreUsuario.setText(currentUser.getDisplayName());
-                nombreUsuario.setTextColor(getResources().getColor(R.color.white));
-                String nombreUsuarioTexto = nombreUsuario.getText().toString();
-                Log.d("nombre usuario:", "Tu nombre de usuario es: " + currentUser.getDisplayName()
-                        + " gei" );
-            } else if (currentUser == null) {
-                Log.d("Sin nombre de usuario", "sin nombre de usuario");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference nombrereferencia = databaseReference.child("usuarios");
+        String  uid = currentUser.getUid();
+        nombrereferencia.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String nombre = snapshot.child("nombreUsuario").getValue(String.class);
+                    nombreUsuario.setText(nombre);
+                    nombreUsuario.setTextColor(getResources().getColor(R.color.white));
+                }else {
+                    Log.d("Sin nombre de usuario", "sin nombre de usuario en la base de datos");
+                }
             }
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Error", "Error al obtener el nombre de usuario: " + error.getMessage());
+            }
+        });
+//        if (currentUser.getDisplayName() != null) {
+//            nombreUsuario.setText(currentUser.getDisplayName());
+//            nombreUsuario.setTextColor(getResources().getColor(R.color.white));
+//        } else {
+//            Log.d("Sin nombre de usuario", "sin nombre de usuario");
+//        }
 
 
         //elementos internos del menu lateral

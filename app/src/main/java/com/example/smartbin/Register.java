@@ -21,6 +21,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Register extends AppCompatActivity {
     EditText Rcorreo, Rcontrasena, Rusuario, Rtelefono, Rcontrasenarepetida;
     Button registrarse;
@@ -90,6 +94,15 @@ public class Register extends AppCompatActivity {
                                 Toast.makeText(Register.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(Register.this, Login.class);
                                 startActivity(intent);
+                                FirebaseUser user = auth.getCurrentUser();
+                                if (user != null){
+                                    DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("usuarios");
+                                    userReference.child(user.getUid()).child("nombreUsuario").setValue(textUsuario);
+                                }
+                                else {
+                                    Toast.makeText(Register.this, "error", Toast.LENGTH_SHORT).show();
+                                }
+
                             } else {
                                 Toast.makeText(Register.this, "Error de registro", Toast.LENGTH_LONG).show();
                                 Rusuario.setText("");

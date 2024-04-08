@@ -27,6 +27,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Login extends AppCompatActivity {
     TextView registrarse;
     Button ingresar;
@@ -37,7 +40,6 @@ public class Login extends AppCompatActivity {
     int RC_SING_IN = 1;
     Button registerWithGoogle, registerWithFacebook;
     String TAG = "GoogleSignIn";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,10 +174,14 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Log.d(TAG, "SignInWithCredential:success");
                     Intent intent = new Intent(Login.this, ContainerFragment.class);
                     startActivity(intent);
                     Toast.makeText(Login.this, "Ingreso exitoso", Toast.LENGTH_SHORT).show();
+                    //Enviar el nombre de usuario a la base de datos
+                    FirebaseUser username = auth.getCurrentUser();
+                    String nombreusuario = username.getDisplayName();
+                    DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("usuarios");
+                    userReference.child(username.getUid()).child("nombreUsuario").setValue(nombreusuario);
                     Login.this.finish();
                 }
                 else{
@@ -184,7 +190,6 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-
     @Override
     protected void onStart() {
         super.onStart();
