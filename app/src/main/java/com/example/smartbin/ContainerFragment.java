@@ -82,7 +82,7 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
                             item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
                             cerrarSesion();
                         }
-                    }, 1000);
+                    }, 500);
                     return true;
                 }
                 if (itemID == R.id.setting){
@@ -100,7 +100,7 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
                             item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
                             startActivity(settings);
                         }
-                    }, 1000);
+                    }, 500);
 
                     return true;
                 }
@@ -118,7 +118,7 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
                             item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
                             Toast.makeText(ContainerFragment.this, "no we", Toast.LENGTH_SHORT).show();
                         }
-                    }, 1000);
+                    }, 500);
                 }
                 return true;
             }

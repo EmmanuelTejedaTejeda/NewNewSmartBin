@@ -100,8 +100,7 @@ public class Register extends AppCompatActivity {
                                     DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("usuarios");
                                     userReference.child(user.getUid()).child("nombreUsuario").setValue(textUsuario);
                                     DatabaseReference correoRerefence = FirebaseDatabase.getInstance().getReference("correos");
-                                    correoRerefence.push().setValue(correoUsuario);
-
+                                    correoRerefence.child(user.getUid()).child("correoUsuario").setValue(correoUsuario);
                                 }
                                 else {
                                     Toast.makeText(Register.this, "error", Toast.LENGTH_SHORT).show();

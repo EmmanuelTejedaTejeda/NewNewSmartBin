@@ -177,11 +177,13 @@ public class Login extends AppCompatActivity {
                     Intent intent = new Intent(Login.this, ContainerFragment.class);
                     startActivity(intent);
                     Toast.makeText(Login.this, "Ingreso exitoso", Toast.LENGTH_SHORT).show();
+
                     //Enviar el nombre de usuario a la base de datos
                     FirebaseUser username = auth.getCurrentUser();
                     String nombreusuario = username.getDisplayName();
                     DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("usuarios");
                     userReference.child(username.getUid()).child("nombreUsuario").setValue(nombreusuario);
+
                     Login.this.finish();
                 }
                 else{
