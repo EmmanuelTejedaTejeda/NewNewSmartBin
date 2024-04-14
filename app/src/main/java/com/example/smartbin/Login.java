@@ -125,7 +125,6 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -140,16 +139,6 @@ public class Login extends AppCompatActivity {
                     Log.w(TAG, "Inicio de sesion con google fallido", e);
                 }
             } else {
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
-                Log.d(TAG, "Error, incio de sesion fallido" + task.getException().toString());
                 Toast.makeText(this, "Ocurrio un error"+ task.getException().toString(), Toast.LENGTH_SHORT).show();
 
             }
@@ -174,15 +163,18 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    //Enviar el nombre de usuario a la base de datos
+                    FirebaseUser user = auth.getCurrentUser();
+                    String nombreusuario = user.getDisplayName();
+                    String correousuario = user.getEmail();
+                    DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("usuarios");
+                    userReference.child(user.getUid()).child("nombreUsuario").setValue(nombreusuario);
+                    DatabaseReference correoReference = FirebaseDatabase.getInstance().getReference("correos");
+                    correoReference.child(user.getUid()).child("correoUsuario").setValue(correousuario);
+
                     Intent intent = new Intent(Login.this, ContainerFragment.class);
                     startActivity(intent);
                     Toast.makeText(Login.this, "Ingreso exitoso", Toast.LENGTH_SHORT).show();
-
-                    //Enviar el nombre de usuario a la base de datos
-                    FirebaseUser username = auth.getCurrentUser();
-                    String nombreusuario = username.getDisplayName();
-                    DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("usuarios");
-                    userReference.child(username.getUid()).child("nombreUsuario").setValue(nombreusuario);
 
                     Login.this.finish();
                 }

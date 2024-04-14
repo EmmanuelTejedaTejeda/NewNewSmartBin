@@ -9,6 +9,7 @@
         android:id="@+id/contenedores"
         android:title="Inicio"
         android:icon="@drawable/hogar"
+        android:iconTintMode="src_atop"
         />
     <item
         android:id="@+id/estadisticas"

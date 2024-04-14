@@ -1,6 +1,16 @@
 package com.example.smartbin;
 
-import static java.security.AccessController.getContext;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,22 +24,6 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Handler;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.Animation;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,88 +35,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ContainerFragment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    ImageButton menuLateral;
-    BottomNavigationView bottomNavigationView;
-    NavHostFragment navHostFragment;
-    NavController navController;
-    TextView textoVariable, nombreUsuario;;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    FirebaseAuth mAuth;
-    MenuItem menuItem;
-    Toolbar toolbarsearch;
+    private ImageButton menuLateral;
+    private BottomNavigationView bottomNavigationView;
+    private NavHostFragment navHostFragment;
+    private NavController navController;
+    private TextView textoVariable, nombreUsuario;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private FirebaseAuth mAuth;
+    private Toolbar toolbarsearch;
+    private MenuItem menuItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container_fragment);
-        bottomNavigationView =  findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
-        //Declaracion de los componentes de el menu lateral
+
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.lateral_menu);
         navigationView.bringToFront();
         navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemID =  item.getItemId();
-                if (itemID == R.id.logout){
-                    SpannableString s = new SpannableString("logout");
-                    s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.casiblanco)),0,s.length(),0);
-                    SpannableString a = new SpannableString("logout");
-                    a.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)),0,s.length(),0);
-                    item.setTitle(s);
-                    item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.casiblanco)));
+        navigationView.setNavigationItemSelectedListener(this);
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run(){
-                            item.setTitle(a);
-                            item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
-                            cerrarSesion();
-                        }
-                    }, 500);
-                    return true;
-                }
-                if (itemID == R.id.setting){
-                    SpannableString s = new SpannableString("settings");
-                    s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.casiblanco)),0,s.length(),0);
-                    SpannableString a = new SpannableString("settings");
-                    a.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)),0,s.length(),0);
-                    item.setTitle(s);
-                    item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.casiblanco)));
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            item.setTitle(a);
-                            Intent settings = new Intent(ContainerFragment.this, settings.class);
-                            item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
-                            startActivity(settings);
-                        }
-                    }, 500);
-
-                    return true;
-                }
-                if (itemID == R.id.share){
-                    SpannableString s = new SpannableString("share");
-                    s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.casiblanco)),0,s.length(),0);
-                    SpannableString a = new SpannableString("share");
-                    a.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)),0,s.length(),0);
-                    item.setTitle(s);
-                    item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.casiblanco)));
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            item.setTitle(a);
-                            item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
-                            Toast.makeText(ContainerFragment.this, "no we", Toast.LENGTH_SHORT).show();
-                        }
-                    }, 500);
-                }
-                return true;
-            }
-        });
         menuLateral = findViewById(R.id.barra_lateral);
         menuLateral.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +69,6 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
             }
         });
 
-        //Inflar el menu lateral
         View headerLateralMenu = navigationView.getHeaderView(0);
         nombreUsuario = headerLateralMenu.findViewById(R.id.nombreUsuario);
         toolbarsearch = findViewById(R.id.toolbarSearch);
@@ -139,7 +76,7 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
         FirebaseUser currentUser = mAuth.getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference nombrereferencia = databaseReference.child("usuarios");
-        String  uid = currentUser.getUid();
+        String uid = currentUser.getUid();
         nombrereferencia.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -147,49 +84,59 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
                     String nombre = snapshot.child("nombreUsuario").getValue(String.class);
                     nombreUsuario.setText(nombre);
                     nombreUsuario.setTextColor(getResources().getColor(R.color.white));
-                }else {
+                } else {
                     Log.d("Sin nombre de usuario", "sin nombre de usuario en la base de datos");
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("Error", "Error al obtener el nombre de usuario: " + error.getMessage());
             }
         });
-//        if (currentUser.getDisplayName() != null) {
-//            nombreUsuario.setText(currentUser.getDisplayName());
-//            nombreUsuario.setTextColor(getResources().getColor(R.color.white));
-//        } else {
-//            Log.d("Sin nombre de usuario", "sin nombre de usuario");
-//        }
 
-
-        //elementos internos del menu lateral
         navController = navHostFragment.getNavController();
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
                 int idFragment = navController.getCurrentDestination().getId();
                 textoVariable = findViewById(R.id.textoIntercambiable);
-
-                if (idFragment == R.id.agregarContenedor){
+                resetIconScale(bottomNavigationView);
+                View iconView = bottomNavigationView.findViewById(idFragment);
+                if (idFragment == R.id.agregarContenedor) {
                     textoVariable.setText("Agregar");
                     toolbarsearch.setVisibility(View.INVISIBLE);
+                    animateIconScale(iconView, true);
                 }
-                if (idFragment == R.id.contenedores){
+                if (idFragment == R.id.contenedores) {
                     textoVariable.setText("Contenedores");
                     toolbarsearch.setVisibility(View.VISIBLE);
+                    animateIconScale(iconView, true);
                 }
-                if (idFragment == R.id.estadisticas){
+                if (idFragment == R.id.estadisticas) {
                     textoVariable.setText("Estadisticas");
                     toolbarsearch.setVisibility(View.INVISIBLE);
+                    animateIconScale(iconView, true);
                 }
             }
         });
     }
+
+    private void resetIconScale(BottomNavigationView bottomNavigationView) {
+        for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
+            MenuItem item = bottomNavigationView.getMenu().getItem(i);
+            View iconView = bottomNavigationView.findViewById(item.getItemId());
+            animateIconScale(iconView, false);
+        }
+    }
+
+    private void animateIconScale(View iconView, boolean isSelected) {
+        float targetScale = isSelected ? 1.8f : 1.0f;
+        iconView.animate().scaleX(targetScale).scaleY(targetScale).setDuration(100).start();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflamos nuestro menu
         getMenuInflater().inflate(R.menu.search, menu);
         getMenuInflater().inflate(R.menu.lateral_bar, menu);
         menuItem = menu.findItem(R.id.search);
@@ -201,17 +148,13 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
         });
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void cerrarSesion(){
+    private void cerrarSesion() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);

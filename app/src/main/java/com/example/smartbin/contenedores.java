@@ -36,7 +36,6 @@ public class contenedores extends Fragment {
     MainAdapter mainAdapter;
     LinearLayout sinConexion;
     SwipeRefreshLayout refreshLayout;
-    EditText search;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -105,7 +104,6 @@ public class contenedores extends Fragment {
     public void onStart() {
         super.onStart();
         mainAdapter.startListening();
-
     }
 
     @Override

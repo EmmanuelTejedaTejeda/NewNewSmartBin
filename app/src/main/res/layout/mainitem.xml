@@ -1,129 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="@color/white"
-    app:cardCornerRadius="6dp"
+    android:backgroundTint="@color/verde_claro"
+    app:cardCornerRadius="12dp"
     app:cardUseCompatPadding="true"
-
-    >
-    <RelativeLayout
+    android:orientation="vertical">
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:background="@color/white"
-        >
-
-        <TextView
-            android:textColor="@color/gris"
-            android:id="@+id/texto1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="N. recolector:" />
-
-        <TextView
-            android:id="@+id/Id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/texto1"
-            android:layout_marginLeft="10dp"
-            android:text="Id"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/texto2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/texto1"
-            android:layout_alignParentStart="true"
-            android:text="Localizacion:"
-            android:textColor="@color/gris" />
-
-        <TextView
-            android:id="@+id/Direccion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Id"
-            android:layout_toEndOf="@+id/texto2"
-            android:text="Lazaro Cardenas del Rio"
-            android:textColor="@color/black"
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/texto3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estado:"
-            android:layout_below="@+id/texto2"
-            android:layout_alignParentStart="true"
-            android:textColor="@color/gris"
-            />
+        android:orientation="vertical">
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Direccion"
-            android:layout_toEndOf="@+id/texto3"
-            android:layout_marginLeft="10dp"
-            android:background="@color/verde"
-            android:id="@+id/contenedor"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <ImageView
-                android:layout_marginLeft="5dp"
-                android:id="@+id/alerta"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/alerta"
-                android:visibility="gone"
-                />
-            <TextView
-                android:id="@+id/Estado"
-                android:layout_width="wrap_content"
+                android:id="@+id/image"
+                android:layout_width="60dp"
+                android:layout_height="80dp"
+                android:background="@drawable/logo"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"/>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/verde"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="Nuevo"
-                android:textColor="@color/white" />
+                android:paddingTop="15dp"
+                android:background="@color/verde_claro"
+                android:orientation="vertical"
+                android:paddingLeft="15dp">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/black"
+                        android:id="@+id/texto1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N. recolector:"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/Id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Id"
+                        android:textColor="@color/black"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/texto2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Localizacion:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/Direccion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lazaro Cardenas del Rio"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/texto3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estado:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/verde"
+                        android:id="@+id/contenedor">
+                        <ImageView
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/alerta"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/alerta"
+                            android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/Estado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/verde"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="Nuevo"
+                            android:textColor="@color/white" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+            <Button
+                android:id="@+id/addNewContainer"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/botonverderedondo"
+                android:text="Editar"
+                android:textColor="@color/white"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="8dp"
+                />
 
-
-
-        <Button
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/botonverderedondo"
-            android:text="Editar"
-            android:textColor="@color/white"
-            android:layout_below="@+id/image"
-
-            />
-
-        <Button
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/image"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/botonrojoredondo"
-            android:text="Eliminar"
-            android:textColor="@color/white"
-            />
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/logo" />
-    </RelativeLayout>
-
-
+            <Button
+                android:id="@+id/deleteThisContainer"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/botonrojoredondo"
+                android:text="Eliminar"
+                android:textColor="@color/white"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="8dp"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>
