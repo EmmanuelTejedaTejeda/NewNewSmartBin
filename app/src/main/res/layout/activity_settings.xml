@@ -34,17 +34,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp">
+        android:orientation="vertical">
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/logo"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/usuario_icon"
             />
         <TextView
             android:id="@+id/nombreUsuario"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="40dp"
             android:text="Aqui va el nombre de usuario"
             android:textColor="@color/black"
             android:gravity="center"
@@ -52,7 +53,7 @@
         <TextView
             android:id="@+id/correoUsuario"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             android:text="Aqui va el correo"
             android:textColor="@color/black"
             android:gravity="center"/>
@@ -60,176 +61,117 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/backgrund_gris_bordes_redondeados"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             >
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:layout_margin="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/cambiar_nombre_usuario"
                 />
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="Cambiar nombre de usuario"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageButton
+                android:id="@+id/cambiarNombreUsuario"
+                android:layout_gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/proximo_simbolo"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             >
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:layout_margin="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/cambiar_correo_usuario"
                 />
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="Cambiar correo electronico"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageButton
+                android:id="@+id/cambiarCorreoUsuario"
+                android:layout_gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/proximo_simbolo"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             >
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:layout_margin="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/cambiar_contrasena_usuario"
                 />
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="Cambiar contraseña"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageButton
+                android:id="@+id/cambiarContrasenaUsuario"
+                android:layout_gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/proximo_simbolo"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             >
             <ImageView
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:layout_margin="10dp"
+                android:layout_height="40dp"
+                android:background="@drawable/verificar_correo_usuario"
                 />
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="Verificar correo"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="center_vertical"
+                android:layout_marginLeft="20dp"
                 />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/backgrund_gris_bordes_redondeados"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            >
-            <ImageView
+            <ImageButton
+                android:id="@+id/verificarCorreoUsuario"
+                android:layout_gravity="center"
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:layout_margin="10dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Cambiar nombre de usuario"
-                android:textColor="@color/white"
-                android:gravity="center_vertical"
-                />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            >
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:layout_margin="10dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Cambiar correo electronico"
-                android:textColor="@color/white"
-                android:gravity="center_vertical"
-                />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            >
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:layout_margin="10dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Cambiar contraseña"
-                android:textColor="@color/white"
-                android:gravity="center_vertical"
-                />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            >
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/facebook"
-                android:layout_margin="10dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Verificar correo"
-                android:textColor="@color/white"
-                android:gravity="center_vertical"
+                android:layout_height="40dp"
+                android:background="@drawable/proximo_simbolo"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

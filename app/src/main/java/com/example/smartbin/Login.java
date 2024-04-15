@@ -167,10 +167,9 @@ public class Login extends AppCompatActivity {
                     FirebaseUser user = auth.getCurrentUser();
                     String nombreusuario = user.getDisplayName();
                     String correousuario = user.getEmail();
-                    DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("usuarios");
+                    DatabaseReference userReference = FirebaseDatabase.getInstance().getReference("datosUsuariosRegistrados");
                     userReference.child(user.getUid()).child("nombreUsuario").setValue(nombreusuario);
-                    DatabaseReference correoReference = FirebaseDatabase.getInstance().getReference("correos");
-                    correoReference.child(user.getUid()).child("correoUsuario").setValue(correousuario);
+                    userReference.child(user.getUid()).child("correoUsuario").setValue(correousuario);
 
                     Intent intent = new Intent(Login.this, ContainerFragment.class);
                     startActivity(intent);

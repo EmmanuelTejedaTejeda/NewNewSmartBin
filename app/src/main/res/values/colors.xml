@@ -17,4 +17,8 @@
     <color name="alerta">#f5dc3d</color>
     <color name="verde_claro">#B2DFDB</color>
     <color name="verde_oscuro">#388E3C</color>
+    <color name="melon">#FFA500</color>
+    <color name="sandia">#FC6C85</color>
+    <color name="azul_cielo">#87CEEB</color>
+    <color name="amarillo_patito">#FFFF99</color>
 </resources>

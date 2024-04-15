@@ -1,142 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".agregarContenedor"
-    android:background="@color/white"
-    >
-    <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-    <ImageView
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:src="@drawable/contenedor_fondo"
-        />
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Registro de contenedores"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginLeft="20dp"
-
-        />
+        android:layout_height="0dp"
+        tools:context=".agregarContenedor"
+        android:background="@color/white"
+        android:layout_weight="1">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:src="@drawable/contenedor_fondo"
+                    />
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Registro de contenedores"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:text="Id y nombre del conenedor:"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="#1"
+                        android:textColor="@color/verde"
+                        android:layout_marginLeft="20dp"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <EditText
+                    android:id="@+id/agregarNombre"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/backgroundverdes"
+                    android:hint="Ejemplo: contenedor principal"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:textColorHint="@color/verde"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Direccion del contenedor:"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    />
+                <EditText
+                    android:id="@+id/agregarDireccion"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/backgroundverdes"
+                    android:hint="Ejemplo: 123 avenida 123"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/verde"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:text="Capacidad maxima:"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    />
+                <EditText
+                    android:id="@+id/agregarPeso"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/backgroundverdes"
+                    android:hint="Ejemplo: 10 kilos"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/verde"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="Id y nombre del conenedor:"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="#1"
-            android:textColor="@color/verde"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp">
+        <Button
+            android:id="@+id/BotonGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/verde"
+            android:textColor="@color/white"
+            android:text="Guardar"
+            android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            />
-
-
+            android:layout_gravity="bottom" />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-    <EditText
-        android:id="@+id/agregarNombre"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/backgroundverdes"
-        android:hint="Ejemplo: contenedor principal"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:textColorHint="@color/verde"
-        android:textSize="15dp"
-        android:textColor="@color/black"
-        android:singleLine="true"
-        android:maxLines="1"
-        />
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="Direccion del contenedor:"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black"
-        />
-    <EditText
-        android:id="@+id/agregarDireccion"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/backgroundverdes"
-        android:hint="Ejemplo: 123 avenida 123"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/verde"
-        android:textSize="15dp"
-        android:singleLine="true"
-        android:maxLines="1"
-        />
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="Capacidad maxima:"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black"
-        />
-    <EditText
-        android:id="@+id/agregarPeso"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/backgroundverdes"
-        android:hint="Ejemplo: 10 kilos"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/verde"
-        android:textSize="15dp"
-        android:singleLine="true"
-        android:maxLines="1"
-        />
-
-    <Button
-        android:id="@+id/BotonGuardar"
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/verde"
-        android:textColor="@color/white"
-        android:text="Guardar"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="bottom"
-        />
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-</ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

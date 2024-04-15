@@ -1,22 +1,23 @@
 package com.example.smartbin;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -24,6 +25,7 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +46,8 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
     private NavigationView navigationView;
     private FirebaseAuth mAuth;
     private Toolbar toolbarsearch;
-    private MenuItem menuItem;
+    private MenuItem buscador;
+    MainAdapter mainAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,66 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
         navigationView = findViewById(R.id.lateral_menu);
         navigationView.bringToFront();
         navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemID =  item.getItemId();
+                if (itemID == R.id.logout){
+                    SpannableString s = new SpannableString("logout");
+                    s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.casiblanco)),0,s.length(),0);
+                    SpannableString a = new SpannableString("logout");
+                    a.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)),0,s.length(),0);
+                    item.setTitle(s);
+                    item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.casiblanco)));
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run(){
+                            item.setTitle(a);
+                            item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+                            cerrarSesion();
+                        }
+                    }, 200);
+                    return true;
+                }
+                if (itemID == R.id.setting){
+                    SpannableString s = new SpannableString("settings");
+                    s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.casiblanco)),0,s.length(),0);
+                    SpannableString a = new SpannableString("settings");
+                    a.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)),0,s.length(),0);
+                    item.setTitle(s);
+                    item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.casiblanco)));
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            item.setTitle(a);
+                            Intent settings = new Intent(ContainerFragment.this, settings.class);
+                            item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+                            startActivity(settings);
+                        }
+                    }, 200);
+
+                    return true;
+                }
+                if (itemID == R.id.share){
+                    SpannableString s = new SpannableString("share");
+                    s.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.casiblanco)),0,s.length(),0);
+                    SpannableString a = new SpannableString("share");
+                    a.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black)),0,s.length(),0);
+                    item.setTitle(s);
+                    item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.casiblanco)));
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            item.setTitle(a);
+                            item.setIconTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+                            Toast.makeText(ContainerFragment.this, "no we", Toast.LENGTH_SHORT).show();
+                        }
+                    }, 200);
+                }
+                return true;
+            }
+        });
 
         menuLateral = findViewById(R.id.barra_lateral);
         menuLateral.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +137,7 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference nombrereferencia = databaseReference.child("usuarios");
+        DatabaseReference nombrereferencia = databaseReference.child("datosUsuariosRegistrados");
         String uid = currentUser.getUid();
         nombrereferencia.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -139,14 +201,30 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);
         getMenuInflater().inflate(R.menu.lateral_bar, menu);
-        menuItem = menu.findItem(R.id.search);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        buscador = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) buscador.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-                return true;
+            public boolean onQueryTextSubmit(String query) {
+                buscar(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                buscar(query);
+                return false;
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+    public void buscar(String str){
+        FirebaseRecyclerOptions<MainModel> options = new FirebaseRecyclerOptions.Builder<MainModel>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Contenedores").orderByChild("Direccion").startAt(str).endAt(str+"~"),MainModel.class)
+                .build();
+        mainAdapter = new MainAdapter(options);
+        mainAdapter.startListening();
+
     }
 
     @Override

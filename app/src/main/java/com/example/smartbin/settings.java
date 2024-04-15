@@ -26,8 +26,7 @@ public class settings extends AppCompatActivity {
     FirebaseUser nombreUsuarioReferencia;
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
-    DatabaseReference databaseReferenceNombre;
-    DatabaseReference databaseReferencecorreo;
+    DatabaseReference databaseReferenceUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +38,8 @@ public class settings extends AppCompatActivity {
         nombreUsuarioReferencia = mAuth.getCurrentUser();
         String uid = nombreUsuarioReferencia.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReferenceNombre = databaseReference.child("usuarios");
-        databaseReferencecorreo = databaseReference.child("correos");
-        databaseReferenceNombre.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReferenceUser = databaseReference.child("datosUsuariosRegistrados");
+        databaseReferenceUser.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String name = snapshot.child("nombreUsuario").getValue(String.class);
@@ -55,7 +53,7 @@ public class settings extends AppCompatActivity {
                 Log.d("error", "Hubo un error al llamar el nombre de usuario");
             }
         });
-        databaseReferencecorreo.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReferenceUser.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String correo = snapshot.child("correoUsuario").getValue(String.class);
