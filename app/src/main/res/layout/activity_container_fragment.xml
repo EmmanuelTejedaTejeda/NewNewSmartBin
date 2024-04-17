@@ -20,7 +20,59 @@
         android:outlineAmbientShadowColor="@color/black"
         android:background="@color/white"
         app:itemIconPadding="30dp"
-        />
+        >
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="float: "
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center_vertical|end"/>
+            <TextView
+                android:id="@+id/float_database"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="wenas"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:textSize="20dp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="int: "
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center_vertical|end"/>
+            <TextView
+                android:id="@+id/int_database"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="wenas"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:textSize="20dp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.navigation.NavigationView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -28,7 +80,7 @@
             android:id="@+id/include"
             layout="@layout/cabecera"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

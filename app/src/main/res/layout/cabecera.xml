@@ -29,15 +29,6 @@
         android:gravity="center"
         />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:menu="@menu/search"
-        android:visibility="visible"
-        android:layout_gravity="center"
-        />
-
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

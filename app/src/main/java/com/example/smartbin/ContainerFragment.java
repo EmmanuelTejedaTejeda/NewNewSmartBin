@@ -41,13 +41,12 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
     private BottomNavigationView bottomNavigationView;
     private NavHostFragment navHostFragment;
     private NavController navController;
-    private TextView textoVariable, nombreUsuario;
+    private TextView textoVariable, nombreUsuario, float_database, int_database;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private FirebaseAuth mAuth;
-    private Toolbar toolbarsearch;
-    private MenuItem buscador;
-    MainAdapter mainAdapter;
+    DatabaseReference referenciaFloat;
+    DatabaseReference referenceInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +132,6 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
 
         View headerLateralMenu = navigationView.getHeaderView(0);
         nombreUsuario = headerLateralMenu.findViewById(R.id.nombreUsuario);
-        toolbarsearch = findViewById(R.id.toolbarSearch);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -150,7 +148,6 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
                     Log.d("Sin nombre de usuario", "sin nombre de usuario en la base de datos");
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("Error", "Error al obtener el nombre de usuario: " + error.getMessage());
@@ -167,21 +164,44 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
                 View iconView = bottomNavigationView.findViewById(idFragment);
                 if (idFragment == R.id.agregarContenedor) {
                     textoVariable.setText("Agregar");
-                    toolbarsearch.setVisibility(View.INVISIBLE);
                     animateIconScale(iconView, true);
                 }
                 if (idFragment == R.id.contenedores) {
                     textoVariable.setText("Contenedores");
-                    toolbarsearch.setVisibility(View.VISIBLE);
                     animateIconScale(iconView, true);
                 }
                 if (idFragment == R.id.estadisticas) {
                     textoVariable.setText("Estadisticas");
-                    toolbarsearch.setVisibility(View.INVISIBLE);
                     animateIconScale(iconView, true);
                 }
             }
         });
+        float_database = findViewById(R.id.float_database);
+        int_database = findViewById(R.id.int_database);
+        referenciaFloat = FirebaseDatabase.getInstance().getReference();
+        referenciaFloat.child("test").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Obtener valor flotante
+                float valorFloat = snapshot.child("float").getValue(Float.class);
+                // Mostrar el valor en tu TextView
+                float_database.setText(String.valueOf(valorFloat));
+                float_database.setTextColor(getResources().getColor(R.color.black));
+
+                // Obtener valor entero
+                int valorInt = snapshot.child("int").getValue(Integer.class);
+                // Mostrar el valor en tu TextView
+                int_database.setText(String.valueOf(valorInt));
+                int_database.setTextColor(getResources().getColor(R.color.black));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Manejar cancelación de la operación
+                Log.e("Error", "Error en la lectura de la base de datos: " + error.getMessage());
+            }
+        });
+
     }
 
     private void resetIconScale(BottomNavigationView bottomNavigationView) {
@@ -199,33 +219,10 @@ public class ContainerFragment extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search, menu);
         getMenuInflater().inflate(R.menu.lateral_bar, menu);
-        buscador = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) buscador.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                buscar(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                buscar(query);
-                return false;
-            }
-        });
         return super.onCreateOptionsMenu(menu);
     }
-    public void buscar(String str){
-        FirebaseRecyclerOptions<MainModel> options = new FirebaseRecyclerOptions.Builder<MainModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("Contenedores").orderByChild("Direccion").startAt(str).endAt(str+"~"),MainModel.class)
-                .build();
-        mainAdapter = new MainAdapter(options);
-        mainAdapter.startListening();
 
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

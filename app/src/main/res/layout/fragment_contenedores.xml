@@ -7,14 +7,49 @@
     tools:context=".contenedores"
     android:background="@color/white">
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/container_super_container"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_transparente_redondo">
+        <EditText
+            android:id="@+id/buscarDentro"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/transparente"
+            android:textColor="@color/black"
+            android:gravity="end|center_vertical"
+            android:paddingRight="20dp"
+            android:maxLines="1"
+            android:singleLine="true"
+
+            />
+        <ImageButton
+            android:id="@+id/buscador"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/lupa_buscador"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/container_super_container">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
