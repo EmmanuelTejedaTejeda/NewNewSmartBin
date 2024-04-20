@@ -33,7 +33,7 @@
                     android:textSize="25dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -51,16 +51,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:text="Id y nombre del conenedor:"
+                        android:text="Contenedor "
                         android:textColor="@color/black"
+                        android:textStyle="bold"
                         />
                     <TextView
+                        android:id="@+id/IdAutomatico"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="#1"
-                        android:textColor="@color/verde"
-                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text=":"
+                        android:textColor="@color/black"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
                 <EditText
                     android:id="@+id/agregarNombre"
@@ -73,19 +81,21 @@
                     android:hint="Ejemplo: contenedor principal"
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
-                    android:textColorHint="@color/verde"
+                    android:textColorHint="@color/gris"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:singleLine="true"
                     android:maxLines="1"
+
                     />
                 <TextView
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="40dp"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:text="Direccion del contenedor:"
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     />
                 <EditText
                     android:id="@+id/agregarDireccion"
@@ -99,18 +109,19 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/verde"
+                    android:textColorHint="@color/gris"
                     android:textSize="15dp"
                     android:singleLine="true"
                     android:maxLines="1"
                     />
                 <TextView
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="40dp"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:text="Capacidad maxima:"
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     />
                 <EditText
                     android:id="@+id/agregarPeso"
@@ -124,7 +135,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/verde"
+                    android:textColorHint="@color/gris"
                     android:textSize="15dp"
                     android:singleLine="true"
                     android:maxLines="1"

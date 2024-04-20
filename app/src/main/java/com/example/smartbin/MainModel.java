@@ -5,15 +5,17 @@ public class MainModel {
     String Direccion;
     String Peso;
     String Estado;
+    String Nombre;
 
     public MainModel() {
     }
 
-    public MainModel(String id, String direccion, String peso, String estado) {
+    public MainModel(String id, String direccion, String peso, String estado, String nombre) {
         Id = id;
         Direccion = direccion;
         Peso = peso;
         Estado = estado;
+        Nombre = nombre;
     }
 
     public String getId() {
@@ -46,5 +48,13 @@ public class MainModel {
 
     public void setEstado(String estado) {
         Estado = estado;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String nombre) {
+        Nombre = nombre;
     }
 }

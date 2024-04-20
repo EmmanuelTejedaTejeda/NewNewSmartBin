@@ -67,4 +67,7 @@ dependencies {
 
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    //Implementation the resource of dialog plus, this is a repository of github
+    implementation ("com.orhanobut:dialogplus:1.11@aar")
 }

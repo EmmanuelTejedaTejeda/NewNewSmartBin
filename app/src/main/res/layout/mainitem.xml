@@ -37,15 +37,30 @@
                         android:id="@+id/texto1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="N. recolector:"
+                        android:text="Recolector "
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/Id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:text="Id"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/Nombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/black"
+                        android:text="Nombre"
+                        />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <LinearLayout
@@ -108,7 +123,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp">
             <Button
-                android:id="@+id/addNewContainer"
+                android:id="@+id/editThisContainer"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
